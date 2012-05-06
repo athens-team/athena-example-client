@@ -4,6 +4,7 @@
 	android:orientation="vertical" android:layout_width="match_parent"
 	android:layout_height="match_parent" android:background="#ffffff">
 	
+    
 	<ImageView android:id="@+id/postviewTop" android:layout_width="fill_parent" android:layout_height="50dp" android:background="@drawable/newspeed_title" android:layout_alignParentTop="true"/>
 	<RelativeLayout android:layout_width="fill_parent"
 		android:layout_height="60dp"

@@ -1,25 +1,15 @@
 package net.rothlee.athens.android;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import net.rothlee.athens.android.net.JSONResponseHandler;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -30,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class AthensJoin extends Activity implements View.OnClickListener {
 
@@ -52,7 +41,10 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 		p_BTN[0].setOnClickListener(this);
 		p_BTN[1].setOnClickListener(this);
 		
-		if(pref.getString("email", "") != ""){
+		p_TV[0].setText(pref.getString("emailaddr", ""));
+		p_TV[1].setText(pref.getString("nickname", ""));
+	
+		if(pref.getString("emailaddr", "") != ""){
 			//이미 등록되었으므로 바로 게시판으로 넘어간다.
 			Intent i = new Intent(this, AthensNewspeed.class);
 			startActivity(i);
@@ -62,36 +54,27 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 
 	public void onClick(View v) {
 		if (v.getId() == R.id.submitMember) {
+			//회원가입
 			try {
-				Log.d("aa", "Button clicked");
 				String url = "http://10.0.2.2/member_verify.php";
 			    HttpPost httppost = new HttpPost(url);
-				//InputStream is = null;
+				
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-				nameValuePairs.add(new BasicNameValuePair("mail", p_TV[0].getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("nick", p_TV[1].getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("emailaddr", p_TV[0].getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("nickname", p_TV[1].getText().toString()));
 				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
 			    String result = "";
+			    Log.d("aa", "working proferly");
 			    JSONObject res = httpclient.execute(httppost, new JSONResponseHandler());
-
-			    
+		    
 			}catch(Exception e) {e.printStackTrace();}
 			finally{ httpclient.getConnectionManager().shutdown(); }
 		}
 		else if (v.getId() == R.id.requestMail){
+			//메일 재전송 요청
 			try {
-			     //요청data 또는 요청XML
-			     String data = URLEncoder.encode("email", "UTF-8") + "="+ URLEncoder.encode(p_TV[0].getText().toString(), "UTF-8")+"&";
-			     data += URLEncoder.encode("nickname", "UTF-8") + "="+ URLEncoder.encode(p_TV[1].getText().toString(), "UTF-8");
-			     URL url = new URL("http://10.0.2.2/member_verify.php");
-
-			     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			     conn.setDoOutput(true);
 			     
-			     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-			     wr.write(data);
-			     wr.flush();
 			}catch(Exception e) {}
 		}
 	}

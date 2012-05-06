@@ -21,8 +21,22 @@
 
 package net.rothlee.athens.android;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class User {
 
+	public static User createFromJson(JSONObject jo) throws JSONException
+	{
+		User result = new User();
+		result.setId(jo.getInt("id"));
+		result.setProfile(jo.getString("profile"));
+		result.setEmailAddr(jo.getString("emailaddr"));
+		result.setNickname(jo.getString("nickname"));
+		result.setCreatedTime(jo.getLong("created_time"));
+		return result;
+	}
+	
 	public static User createById(Integer id) {
 		User result = new User();
 		result.setId(id);
@@ -38,14 +52,11 @@ public class User {
 	public static User create(String email, String nickname, Integer deviceId) {
 		User result = new User();
 		result.setEmailAddr(email);
-		result.setDeviceId(0);
 		result.setNickname(nickname);
 		return result;
 	}
 	
 	private Integer id;
-	
-	private Integer deviceId;
 	
 	private String profile;
 	
@@ -61,14 +72,6 @@ public class User {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getDeviceId() {
-		return deviceId;
-	}
-
-	public void setDeviceId(Integer deviceId) {
-		this.deviceId = deviceId;
 	}
 
 	public String getProfile() {

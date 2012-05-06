@@ -16,11 +16,24 @@
 
 package net.rothlee.athens.android;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * @author roth2520@gmail.com
  */
 public class Post{
 
+	public static Post createFromJson(JSONObject jo) throws JSONException
+	{
+		Post result = new Post();
+		result.setId(jo.getInt("id"));
+		result.setId(jo.getInt("userId"));
+		result.setContent(jo.getString("content"));
+		result.setCreatedTime(jo.getLong("created_time"));
+		return result;
+	}
+	
 	public static Post create(Integer postId) {
 		Post result = new Post();
 		result.setId(postId);

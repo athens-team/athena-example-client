@@ -67,24 +67,6 @@ public class MyListAdapter extends BaseAdapter{
 		txt2.setText(itemArray.get(position).getContent()); 
 		txt2.setBackgroundColor(Color.WHITE);
 		
-		Button btn = (Button)convertView.findViewById(R.id.delete);
-		btn.setVisibility(View.GONE);
-		
-		btn.setOnClickListener(new Button.OnClickListener(){
-			/* 삭제버튼을 눌렀을 경우 */
-			public void onClick(View v){
-				String tempUrl = DownloadHtml("http://10.0.2.2/m_reply_delete.php?"); //?????
-				
-				if(tempUrl.toString().contains("0")){
-					Toast.makeText(maincon, "본인의 게시물이 아닙니다.", Toast.LENGTH_SHORT).show();			
-				} else if(tempUrl.toString().contains("1")){
-					Toast.makeText(maincon, "삭제되었습니다.", Toast.LENGTH_SHORT).show();			
-				} else {
-					Toast.makeText(maincon, "삭제과정에서 에러가 발생했습니다.", Toast.LENGTH_SHORT).show();			
-				}
-			}
-		});
-		
 		return convertView;
 	}
 	

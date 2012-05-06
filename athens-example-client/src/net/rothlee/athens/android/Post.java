@@ -13,17 +13,15 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.olympus.data;
 
-import net.rothlee.athens.olympus.data.DataUtils.JConvertable;
-
+package net.rothlee.athens.android;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * @author roth2520@gmail.com
  */
-public class Post implements JConvertable {
+public class Post{
 
 	public static Post create(Integer postId) {
 		Post result = new Post();
@@ -91,14 +89,14 @@ public class Post implements JConvertable {
 		this.createdTime = createdTime;
 	}
 	
-	public JSONObject toJSON() throws JSONException {
-		JSONObject result = new JSONObject();
-		result.put("id", getId());
-		result.put("user_id", getUserId());
-		result.put("user", getUser().toJSON());
-		result.put("content", getContent());
-		result.put("created_time", getCreatedTime());
-		return result;
-	}
+//	public JSONObject toJSON() throws JSONException {
+//		JSONObject result = new JSONObject();
+//		result.put("id", getId());
+//		result.put("user_id", getUserId());
+//		result.put("user", getUser().toJSON());
+//		result.put("content", getContent());
+//		result.put("created_time", getCreatedTime());
+//		return result;
+//	}
 
 }

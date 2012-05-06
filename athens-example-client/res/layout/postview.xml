@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="match_parent"
+	android:layout_height="match_parent" android:background="#ffffff">
+	
+	<ImageView android:id="@+id/postviewTop" android:layout_width="fill_parent" android:layout_height="50dp" android:background="@drawable/newspeed_title" android:layout_alignParentTop="true"/>
+	<RelativeLayout android:layout_width="fill_parent"
+		android:layout_height="60dp"
+		android:id="@+id/topcontent"
+		android:layout_below="@+id/postviewTop"
+		>
+		<ImageView android:layout_width="50dp"
+			android:layout_height="50dp" android:id="@+id/pv_image"
+			android:layout_alignParentLeft="true" >
+		</ImageView>
+		<TextView 
+			android:layout_toRightOf="@+id/pv_image"
+			android:id="@+id/pvtext1" 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" 
+			android:textSize="15sp"
+			android:textColor="#000000" 
+			android:gravity="center_vertical"
+			android:paddingLeft="6dip" 
+			android:maxLines="1" 
+			android:background="#9ACD32" />
+		<TextView 
+			android:layout_alignLeft="@+id/pvtext1"
+			android:layout_below="@+id/pvtext1" 
+			android:id="@+id/pvtext2"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:textSize="15sp" 
+			android:textColor="#000000" 
+			android:gravity="center_vertical"
+			android:paddingLeft="6dip" 
+			android:maxLines="1" android:background="#9ACD32" />
+		<TextView 
+		    android:layout_alignLeft="@+id/pvtext2"
+			android:layout_below="@+id/pvtext2" 
+			android:id="@+id/pvtext3"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:textSize="15sp" 
+			android:textColor="#000000" 
+			android:gravity="center_vertical"
+			android:paddingLeft="6dip" 
+			android:maxLines="1" 
+			android:background="#9ACD32" 
+			/>	
+		<Button
+			android:id="@+id/delcomment"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_alignBottom="@+id/pvtext3"
+			android:text="삭제"
+		/>
+	</RelativeLayout>
+
+	<LinearLayout 
+		android:layout_below="@+id/topcontent"
+		android:layout_width="fill_parent"
+		android:layout_height="400dp"
+		android:layout_above="@+id/inserting">
+		<ListView android:layout_height="wrap_content"
+			android:layout_width="fill_parent" android:id="@+id/post_list" />
+	</LinearLayout>
+
+	<RelativeLayout
+		android:id="@+id/inserting"
+		android:layout_alignParentBottom="true"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+	>
+	<EditText
+		android:layout_alignParentLeft="true"
+		android:layout_height="wrap_content"
+		android:layout_width="fill_parent"
+		android:text="yahoo"
+		android:id="@+id/replyInsertContext"
+		android:layout_toLeftOf="@+id/replyInsertBtn"
+	>
+	</EditText>
+	<Button 
+		android:id="@+id/replyInsertBtn"
+		android:layout_alignParentRight="true"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="post"
+		/>
+	</RelativeLayout>
+</RelativeLayout>

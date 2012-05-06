@@ -27,15 +27,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class AthensNewspeed extends Activity{
+public class AthensNewspeed extends Activity implements View.OnClickListener{
 	
 	private ListView lv_SA;
 	private ArrayList<Post> list_post;
 	private MyListAdapter adapter_post ;
+	private TextView write;
 	String userID;
 	
 	public void onCreate(Bundle savedInstanceState){
@@ -44,10 +48,12 @@ public class AthensNewspeed extends Activity{
 		setContentView(R.layout.newspeed);
         
 		list_post = new ArrayList<Post>();
+		write = (TextView)findViewById(R.id.writing);
 		adapter_post = new MyListAdapter(this, R.layout.list_write,list_post);
 		
         // lv_SA.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         String url = DownloadHtml("http://10.0.2.2/finalNFB/m_post_list.php?userID=" + userID);	
+        write.setOnClickListener(AthensNewspeed.this);
         try{
         	JSONArray ja = new JSONArray(url);
         	for(int i = 0 ; i < ja.length() ; i++){        		
@@ -62,6 +68,13 @@ public class AthensNewspeed extends Activity{
         
         	lv_SA.setClickable(true);
         } catch(Exception e) { }
+	}
+	
+	public void onClick(View v) {
+		if(v.getId() == R.id.writing){
+			Intent intent = new Intent(this, writeActivity.class);
+			startActivity(intent);
+		}
 	}
 
 	String DownloadHtml(String addr){

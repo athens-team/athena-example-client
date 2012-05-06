@@ -1,17 +1,17 @@
 /*
-* Copyright 2012 Athens Team
- *
- * This file to you under the Apache License, version 2.0
- * (the "License"); you may not use this file except in compliance with the
- * License.  You may obtain a copy of the License at:
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * Copyright 2012 Athens Team
+ * 
+ * This file to you under the Apache License, version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License. You may obtain a
+ * copy of the License at:
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
- * License for the specific language governing permissions and limitations
- * under the License.
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.rothlee.athens.android;
 
@@ -25,72 +25,98 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AthensJoin extends Activity implements View.OnClickListener {
 
-	HttpClient httpclient = new DefaultHttpClient();
-	private SharedPreferences pref = null;
-	EditText p_TV[] = new EditText[2];
-	Button p_BTN[] = new Button[2];
+	private OlympusPreference mPref = null;
+	private EditText mEditJoinEmail;
+	private EditText mEditJoinNickname;
+	private Button mBtnSubmit;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.join);
-		pref = getSharedPreferences("prefName",Activity.MODE_PRIVATE);
 
-		p_TV[0] = (EditText) findViewById(R.id.joinMail);
-		p_TV[1] = (EditText) findViewById(R.id.joinName);
+		mPref = OlympusPreference.create(this);
 
-		p_BTN[0] = (Button) findViewById(R.id.submitMember);
-		p_BTN[1] = (Button) findViewById(R.id.requestMail);
-		p_BTN[0].setOnClickListener(this);
-		p_BTN[1].setOnClickListener(this);
-		
-		p_TV[0].setText(pref.getString("emailaddr", ""));
-		p_TV[1].setText(pref.getString("nickname", ""));
-	
-		if(pref.getString("emailaddr", "") != ""){
-			//이미 등록되었으므로 바로 게시판으로 넘어간다.
-			Intent i = new Intent(this, AthensNewspeed.class);
-			startActivity(i);
-     		finish();
-		}
+		mEditJoinEmail = (EditText) findViewById(R.id.join_mail);
+		mEditJoinNickname = (EditText) findViewById(R.id.join_nickname);
+
+		mBtnSubmit = (Button) findViewById(R.id.btn_submit_json);
+		mBtnSubmit.setOnClickListener(this);
+
+		checkAndMove();
 	}
 
+	private void checkAndMove() {
+		/* if already signin */
+		if (!StringUtils.isEmptyOrNull(mPref.getAccessToken())) {
+			Intent intent = new Intent(this, AthensNewspeed.class);
+			startActivity(intent);
+			finish();
+		}
+	}
+	
 	public void onClick(View v) {
-		if (v.getId() == R.id.submitMember) {
-			//회원가입
-			try {
-				String url = "http://10.0.2.2/member_verify.php";
-			    HttpPost httppost = new HttpPost(url);
-				
-				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-				nameValuePairs.add(new BasicNameValuePair("emailaddr", p_TV[0].getText().toString()));
-				nameValuePairs.add(new BasicNameValuePair("nickname", p_TV[1].getText().toString()));
-				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		final String email = mEditJoinEmail.getText().toString();
+		final String nickname = mEditJoinNickname.getText().toString();
+		final String tag = android.os.Build.MODEL;
 
-			    String result = "";
-			    Log.d("aa", "working proferly");
-			    JSONObject res = httpclient.execute(httppost, new JSONResponseHandler());
-		    
-			}catch(Exception e) {e.printStackTrace();}
-			finally{ httpclient.getConnectionManager().shutdown(); }
-		}
-		else if (v.getId() == R.id.requestMail){
-			//메일 재전송 요청
-			try {
-			     
-			}catch(Exception e) {}
-		}
+		final HttpClient httpClient = new DefaultHttpClient();
+
+		new DefaultAsyncTask<JSONObject>(ProgressDialogs.createDialog(this)) {
+
+			@Override
+			protected JSONObject doInBackground(Object... params) {
+				Uri uri = Uri.parse(OlympusConst.SERVER_HOST
+						+ OlympusConst.PATH_GET_ACCEESS_TOKEN);
+				HttpPost httpPost = new HttpPost(uri.toString());
+
+				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+				nameValuePairs.add(new BasicNameValuePair("email", email));
+				nameValuePairs
+						.add(new BasicNameValuePair("nickname", nickname));
+				nameValuePairs.add(new BasicNameValuePair("tag", tag));
+				try {
+					httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+					JSONObject result = httpClient.execute(httpPost,
+							new JSONResponseHandler());
+					return result;
+					
+				} catch (Exception e) {
+					Log.e("O", e.getMessage(), e);
+					return null;
+				}
+			}
+
+			protected void onPostExecute(JSONObject result) {
+				super.onPostExecute(result);
+				
+				if (result==null || result.has("error")) {
+					Toast.makeText(AthensJoin.this, "error occered",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					try {
+						String accessToken = result.getString("result");
+						mPref.setAccessToken(accessToken);
+						checkAndMove();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+		}.execute();
 	}
 }

@@ -34,11 +34,8 @@ public class JSONResponseHandler implements ResponseHandler<JSONObject> {
 	public JSONObject handleResponse(HttpResponse response)
 			throws ClientProtocolException, IOException {
 		StringBuffer sb = new StringBuffer();
-		Log.d("aa", "1");
-		sb.append(EntityUtils.getContentCharSet(response.getEntity()));
-		Log.d("aa", "2");
+		sb.append(EntityUtils.toString(response.getEntity()));
 		try {
-			Log.d("aa", "3");
 			return new JSONObject(sb.toString());
 		} catch (Exception e) {
 			return null;

@@ -22,17 +22,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import net.rothlee.athens.android.data.Post;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MyListAdapter extends BaseAdapter{
 

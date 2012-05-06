@@ -4,20 +4,12 @@
 	android:id="@+id/rel_back"
 	>
 
-    <ImageView
-        android:id="@+id/write_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-  	>
-    </ImageView>
-
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/write_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:background="#f5d3d5"
         android:gravity="center_vertical"
         android:maxLines="1"

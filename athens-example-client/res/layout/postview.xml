@@ -9,12 +9,8 @@
 		android:id="@+id/topcontent"
 		android:layout_below="@+id/postviewTop"
 		>
-		<ImageView android:layout_width="50dp"
-			android:layout_height="50dp" android:id="@+id/pv_image"
-			android:layout_alignParentLeft="true" >
-		</ImageView>
 		<TextView 
-			android:layout_toRightOf="@+id/pv_image"
+			android:layout_alignParentLeft="true"
 			android:id="@+id/pvtext1" 
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 

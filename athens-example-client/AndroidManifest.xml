@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar">
         <activity
-            android:name="AthensJoin"
+            android:name=".OlympusJoinActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>

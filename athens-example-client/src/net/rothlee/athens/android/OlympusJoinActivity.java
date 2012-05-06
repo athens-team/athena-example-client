@@ -38,7 +38,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AthensJoin extends Activity implements View.OnClickListener {
+/**
+ * @author roth2520@gmail.com
+ */
+public class OlympusJoinActivity extends Activity implements View.OnClickListener {
 
 	private OlympusPreference mPref = null;
 	private EditText mEditJoinEmail;
@@ -47,7 +50,7 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.join);
+		setContentView(R.layout.activity_join);
 
 		mPref = OlympusPreference.create(this);
 
@@ -68,8 +71,9 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 			finish();
 		}
 	}
-	
+
 	public void onClick(View v) {
+		
 		final String email = mEditJoinEmail.getText().toString();
 		final String nickname = mEditJoinNickname.getText().toString();
 		final String tag = android.os.Build.MODEL;
@@ -94,18 +98,18 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 					JSONObject result = httpClient.execute(httpPost,
 							new JSONResponseHandler());
 					return result;
-					
+
 				} catch (Exception e) {
-					Log.e("O", e.getMessage(), e);
+					Log.e("Olympus", e.getMessage(), e);
 					return null;
 				}
 			}
 
 			protected void onPostExecute(JSONObject result) {
 				super.onPostExecute(result);
-				
-				if (result==null || result.has("error")) {
-					Toast.makeText(AthensJoin.this, "error occered",
+
+				if (result == null || result.has("error")) {
+					Toast.makeText(OlympusJoinActivity.this, "error occered",
 							Toast.LENGTH_SHORT).show();
 				} else {
 					try {

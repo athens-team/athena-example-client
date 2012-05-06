@@ -24,7 +24,6 @@
 		android:layout_height="wrap_content" android:textColor="#000000"
 		android:textSize="21sp"
 		 />
-	
 	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:gravity="center" android:paddingBottom="20dp">
 		<Button android:id="@+id/submitMember" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="가입신청" />
 		<Button android:id="@+id/requestMail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="메일요청" />

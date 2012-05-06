@@ -30,7 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class pageViewActivity extends Activity implements View.OnClickListener{
+public class AthensPageView extends Activity implements View.OnClickListener{
 
 	int number;
 	String mID;
@@ -44,7 +44,7 @@ public class pageViewActivity extends Activity implements View.OnClickListener{
 	Button deleteContext;
 	EditText replyContext;
 	
-	private ArrayList<WritingItem> list_PV;
+	private ArrayList<AthensWritingItem> list_PV;
 	private MyListAdapter adapter_PV;
 	
 	public void onCreate(Bundle savedInstanceState){
@@ -66,14 +66,14 @@ public class pageViewActivity extends Activity implements View.OnClickListener{
 				String tempUrl = DownloadHtml("http://10.0.2.2/finalNFB/m_post_delete.php?userID=" + userID + "&number=" + number);
 				
 				if(tempUrl.toString().contains("0")){
-					Toast.makeText(pageViewActivity.this, "본인의 게시물이 아닙니다.", Toast.LENGTH_SHORT).show();			
+					Toast.makeText(AthensPageView.this, "본인의 게시물이 아닙니다.", Toast.LENGTH_SHORT).show();			
 				} else if(tempUrl.toString().contains("1")){
-					Toast.makeText(pageViewActivity.this, "포스트가 삭제되었습니다.", Toast.LENGTH_SHORT).show();			
+					Toast.makeText(AthensPageView.this, "포스트가 삭제되었습니다.", Toast.LENGTH_SHORT).show();			
 				} else {
-					Toast.makeText(pageViewActivity.this, "삭제과정에서 에러가 발생했습니다.", Toast.LENGTH_SHORT).show();			
+					Toast.makeText(AthensPageView.this, "삭제과정에서 에러가 발생했습니다.", Toast.LENGTH_SHORT).show();			
 				}
 				
-				Intent i = new Intent(pageViewActivity.this, newspeedActivity.class);
+				Intent i = new Intent(AthensPageView.this, AthensNewspeed.class);
 
 	        	i.putExtra("userID", userID);
 	    		startActivity(i);
@@ -94,7 +94,7 @@ public class pageViewActivity extends Activity implements View.OnClickListener{
 //	    });
 	    
 	    
-		list_PV = new ArrayList<WritingItem>();
+		list_PV = new ArrayList<AthensWritingItem>();
 		adapter_PV = new MyListAdapter(this, R.layout.list_write, list_PV);
 		
 		/* Jason을 이용한 본문 및 덧글 출력부분 */
@@ -125,8 +125,8 @@ public class pageViewActivity extends Activity implements View.OnClickListener{
         		/* 덧글 출력 */
         		int j = 0;
         		while(printable > 0){    			
-        			WritingItem wi;
-        			wi = new WritingItem(order.getString("semiimage"+j), order.getString("seminame"+j), order.getString("semicontent"+j), "", order.getString("semiID"+j), order.getInt("seminumber"+j));
+        			AthensWritingItem wi;
+        			wi = new AthensWritingItem(order.getString("semiimage"+j), order.getString("seminame"+j), order.getString("semicontent"+j), "", order.getString("semiID"+j), order.getInt("seminumber"+j));
         			
         			list_PV.add(wi);
         			lv_PV = (ListView)findViewById(R.id.post_list);
@@ -151,17 +151,17 @@ public class pageViewActivity extends Activity implements View.OnClickListener{
 
 		Context maincon;
 		LayoutInflater Inflater;
-		ArrayList<WritingItem> itemArray;
+		ArrayList<AthensWritingItem> itemArray;
 		int layout;
 		
-		public MyListAdapter(Context context, int alayout, ArrayList<WritingItem> list_PV){
+		public MyListAdapter(Context context, int alayout, ArrayList<AthensWritingItem> list_PV){
 			maincon = context;
 			Inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemArray = list_PV;
 			layout = alayout;
 		}
 		
-		public WritingItem getMyItem(int position){
+		public AthensWritingItem getMyItem(int position){
 			return itemArray.get(position);
 		}
 		
@@ -244,10 +244,10 @@ public class pageViewActivity extends Activity implements View.OnClickListener{
 			String replyWriteUrl = DownloadHtml("http://10.0.2.2/finalNFB/m_reply_insert.php?userID=" + userID + "&number=" + number + "&content=" + java.net.URLEncoder.encode(replyContext.getText().toString()));
 			
 			if(replyWriteUrl.toString().contains("1")){
-				Toast.makeText(pageViewActivity.this, "덧글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
+				Toast.makeText(AthensPageView.this, "덧글이 등록되었습니다.", Toast.LENGTH_SHORT).show();
 				finish();
 			} else {
-				Toast.makeText(pageViewActivity.this, "덧글 등록시에 에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();			
+				Toast.makeText(AthensPageView.this, "덧글 등록시에 에러가 발생하였습니다.", Toast.LENGTH_SHORT).show();			
 			}
 		}
 	}

@@ -29,10 +29,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class newspeedActivity extends Activity{
+public class AthensNewspeed extends Activity{
 	
 	ListView lv_SA;
-	private ArrayList<WritingItem> list_NS;
+	private ArrayList<AthensWritingItem> list_NS;
 	private MyListAdapter adapter_NS ;
 	String userID;
 	
@@ -43,7 +43,7 @@ public class newspeedActivity extends Activity{
 
         userID = getIntent().getStringExtra("userID");
         
-		list_NS = new ArrayList<WritingItem>();
+		list_NS = new ArrayList<AthensWritingItem>();
 		//adapter_NS = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, list_NS);
 		adapter_NS = new MyListAdapter(this, R.layout.list_write,list_NS);
 		
@@ -54,8 +54,8 @@ public class newspeedActivity extends Activity{
         	for(int i = 0 ; i < ja.length() ; i++){        		
         		JSONObject order = ja.getJSONObject(i);
 
-        		WritingItem wi;								
-        		wi = new WritingItem(order.getString("image"),order.getString("name"), order.getString("content"),order.getString("date"), order.getInt("number"));
+        		AthensWritingItem wi;								
+        		wi = new AthensWritingItem(order.getString("image"),order.getString("name"), order.getString("content"),order.getString("date"), order.getInt("number"));
 
         		list_NS.add(wi);
         		lv_SA = (ListView)findViewById(R.id.comment_list);
@@ -68,11 +68,11 @@ public class newspeedActivity extends Activity{
           	  public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
           		   	
           		int orderNo;
-          	    WritingItem w = adapter_NS.getMyItem(position);
+          	    AthensWritingItem w = adapter_NS.getMyItem(position);
           		
           		orderNo = w.number;
           	    
-          	    Intent i = new Intent(newspeedActivity.this, pageViewActivity.class);
+          	    Intent i = new Intent(AthensNewspeed.this, AthensPageView.class);
           	    i.putExtra("userID", userID);
               	i.putExtra("postNumber",orderNo);
           		startActivity(i);
@@ -88,17 +88,17 @@ public class newspeedActivity extends Activity{
 
 		Context maincon;
 		LayoutInflater Inflater;
-		ArrayList<WritingItem> itemArray;
+		ArrayList<AthensWritingItem> itemArray;
 		int layout;
 		
-		public MyListAdapter(Context context, int alayout, ArrayList<WritingItem> iitemArray){
+		public MyListAdapter(Context context, int alayout, ArrayList<AthensWritingItem> iitemArray){
 			maincon = context;
 			Inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			itemArray = iitemArray;
 			layout = alayout;
 		}
 		
-		public WritingItem getMyItem(int position){
+		public AthensWritingItem getMyItem(int position){
 			return itemArray.get(position);
 		}
 		

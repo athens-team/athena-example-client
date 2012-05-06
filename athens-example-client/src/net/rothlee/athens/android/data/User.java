@@ -1,4 +1,3 @@
-
 /*
 * Copyright 2012 Athens Team
  *
@@ -14,16 +13,14 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-
-/**
- * @author roth2520@gmail.com
- */
-
 package net.rothlee.athens.android.data;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @author roth2520@gmail.com
+ */
 public class User {
 
 	public static User createFromJson(JSONObject jo) throws JSONException

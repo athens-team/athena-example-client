@@ -6,6 +6,15 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +27,7 @@ import android.widget.Toast;
 
 public class AthensJoin extends Activity implements View.OnClickListener {
 
+	HttpClient httpclient = new DefaultHttpClient();
 	private SharedPreferences pref = null;
 	EditText p_TV[] = new EditText[2];
 	Button p_BTN[] = new Button[2];
@@ -45,24 +55,33 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 
 	public void onClick(View v) {
 		if (v.getId() == R.id.submitMember) {
-			try {
-			     //요청data 또는 요청XML
-			     String data = URLEncoder.encode("email", "UTF-8") + "="+ URLEncoder.encode(p_TV[0].getText().toString(), "UTF-8")+"&";
-			     data += URLEncoder.encode("nickname", "UTF-8") + "="+ URLEncoder.encode(p_TV[1].getText().toString(), "UTF-8");
-			     URL url = new URL("http://10.0.2.2/member_verify.php");
+			try {			
+				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+				nameValuePairs.add(new BasicNameValuePair("mail", p_TV[0].getText().toString()));
+				nameValuePairs.add(new BasicNameValuePair("nick", p_TV[1].getText().toString()));
 
-			     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			     conn.setDoOutput(true);
+			     //요청data 또는 요청XML
+			     //String data = URLEncoder.encode("email", "UTF-8") + "="+ URLEncoder.encode(p_TV[0].getText().toString(), "UTF-8")+"&";
+			     //data += URLEncoder.encode("nickname", "UTF-8") + "="+ URLEncoder.encode(p_TV[1].getText().toString(), "UTF-8");
+			     String url = "http://10.0.2.2/member_verify.php";
+			     HttpPost httppost = new HttpPost(url);
+			     UrlEncodedFormEntity entityRequest = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
+			     httppost.setEntity(entityRequest);
+				
+			     HttpResponse response = httpclient.execute(httppost);
 			     
-			     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-			     wr.write(data);
-			     wr.flush();
+			     //HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			     // conn.setDoOutput(true);
+			     
+			     //OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+			     //wr.write(data);
+			     //wr.flush();
 			 
-			     BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-			     String line;
-			     while ((line = rd.readLine()) != null) {
+			     //BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			     //String line;
+			     //while ((line = rd.readLine()) != null) {
 			    	 //유효한 값인지 검사할 경우 여기서 그 결과를 확인하는 처리를 해줌.
-				}
+				//}
 			}catch(Exception e) {}
 		}
 		else if (v.getId() == R.id.requestMail){

@@ -46,7 +46,6 @@ public class MyListAdapter extends BaseAdapter{
 		return itemArray.get(position).getUser();
 	}
 
-	
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
 		return position;

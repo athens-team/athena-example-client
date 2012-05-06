@@ -9,6 +9,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
+import net.rothlee.athens.android.net.JSONResponseHandler;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -17,11 +19,14 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,34 +62,20 @@ public class AthensJoin extends Activity implements View.OnClickListener {
 
 	public void onClick(View v) {
 		if (v.getId() == R.id.submitMember) {
-			try {			
-				InputStream is = null;
+			try {
+				Log.d("aa", "Button clicked");
+				String url = "http://10.0.2.2/member_verify.php";
+			    HttpPost httppost = new HttpPost(url);
+				//InputStream is = null;
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 				nameValuePairs.add(new BasicNameValuePair("mail", p_TV[0].getText().toString()));
 				nameValuePairs.add(new BasicNameValuePair("nick", p_TV[1].getText().toString()));
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-			     String result = "";
-				 String url = "http://10.0.2.2/member_verify.php";
-			     HttpPost httppost = new HttpPost(url);
-			     UrlEncodedFormEntity entityRequest = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-			     httppost.setEntity(entityRequest);
-				
-			     HttpResponse response = httpclient.execute(httppost);
-			     HttpEntity entityResponse = response.getEntity();
-			     is = entityResponse.getContent();
-			     
-			     BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
-			     StringBuilder sb = new StringBuilder();
-			     String line = null;
-			     while((line = reader.readLine()) != null)
-			     {
-			    	 if(line.contains(p_TV[0].getText().toString()))
-			    		 sb.append(line).append("\n");
-			     }
-			     is.close();
-			     result = sb.toString();
-			     p_TV[1].setText(result);
-			     
+			    String result = "";
+			    JSONObject res = httpclient.execute(httppost, new JSONResponseHandler());
+
+			    
 			}catch(Exception e) {e.printStackTrace();}
 			finally{ httpclient.getConnectionManager().shutdown(); }
 		}

@@ -19,7 +19,7 @@
  * @author roth2520@gmail.com
  */
 
-package net.rothlee.athens.android;
+package net.rothlee.athens.android.data;
 
 import org.json.JSONException;
 import org.json.JSONObject;

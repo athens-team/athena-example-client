@@ -14,7 +14,7 @@
  * under the License.
  */
 
-package net.rothlee.athens.android;
+package net.rothlee.athens.android.data;
 
 import org.json.JSONException;
 import org.json.JSONObject;

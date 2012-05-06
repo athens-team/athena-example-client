@@ -6,6 +6,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import net.rothlee.athens.android.data.Post;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

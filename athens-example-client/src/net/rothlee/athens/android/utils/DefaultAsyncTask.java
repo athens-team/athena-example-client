@@ -27,6 +27,10 @@ public abstract class DefaultAsyncTask<Result> extends
 
 	private final ProgressDialog dialog;
 
+	public DefaultAsyncTask() {
+		this.dialog = null;
+	}
+	
 	public DefaultAsyncTask(ProgressDialog dialog) {
 		this.dialog = dialog;
 	}

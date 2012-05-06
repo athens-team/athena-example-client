@@ -1,17 +1,17 @@
 /*
-* Copyright 2012 Athens Team
- *
- * This file to you under the Apache License, version 2.0
- * (the "License"); you may not use this file except in compliance with the
- * License.  You may obtain a copy of the License at:
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
+ * Copyright 2012 Athens Team
+ * 
+ * This file to you under the Apache License, version 2.0 (the "License"); you
+ * may not use this file except in compliance with the License. You may obtain a
+ * copy of the License at:
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
- * License for the specific language governing permissions and limitations
- * under the License.
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package net.rothlee.athens.android.data;
 
@@ -28,39 +28,40 @@ public class User {
 		result.setId(id);
 		return result;
 	}
-	
+
 	public static User createByEmail(String email) {
 		User result = new User();
 		result.setEmailAddr(email);
 		return result;
 	}
-	
+
 	public static User create(String email, String nickname, Integer deviceId) {
 		User result = new User();
 		result.setEmailAddr(email);
 		result.setNickname(nickname);
 		return result;
 	}
-	
-	public static User createFromJson(JSONObject jo) throws JSONException
-	{
+
+	public static User createFromJson(JSONObject jo) throws JSONException {
 		User result = new User();
 		result.setId(jo.getInt("id"));
-		result.setProfile(jo.getString("profile"));
-		result.setEmailAddr(jo.getString("emailaddr"));
+		if (jo.has("profile")) {
+			result.setProfile(jo.getString("profile"));
+		}
+		result.setEmailAddr(jo.getString("email_addr"));
 		result.setNickname(jo.getString("nickname"));
 		result.setCreatedTime(jo.getLong("created_time"));
 		return result;
 	}
-	
+
 	private Integer id;
-	
+
 	private String profile;
-	
+
 	private String emailAddr;
-	
+
 	private String nickname;
-	
+
 	private Long createdTime;
 
 	public Integer getId() {
@@ -102,5 +103,5 @@ public class User {
 	public void setCreatedTime(Long createdTime) {
 		this.createdTime = createdTime;
 	}
-	
+
 }

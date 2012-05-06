@@ -15,7 +15,10 @@
  */
 package net.rothlee.athens.android;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import net.rothlee.athens.android.data.Post;
 import android.content.Context;
@@ -26,14 +29,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MyListAdapter extends BaseAdapter{
+public class PostAdapter extends BaseAdapter{
 
 	private Context mContext;
 	private LayoutInflater mInflater;
 	private ArrayList<Post> mItemArray;
 	private int mItemResId;
 	
-	public MyListAdapter(Context context, int itemResId, ArrayList<Post> itemArray){
+	public PostAdapter(Context context, int itemResId, ArrayList<Post> itemArray){
 		mContext = context;
 		mInflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mItemArray = itemArray;
@@ -66,10 +69,14 @@ public class MyListAdapter extends BaseAdapter{
 		final Post post = getItem(position);
 		final Holder holder = (Holder) convertView.getTag();
 
+		GregorianCalendar calendar = new GregorianCalendar();
+		calendar.setTimeInMillis(post.getCreatedTime());
+		SimpleDateFormat format = new SimpleDateFormat();
+		
 		holder.mProfile.setVisibility(View.GONE);
 		holder.mNickname.setText(post.getUser().getNickname());
 		holder.mContent.setText(post.getContent());
-		holder.mDate.setText(String.valueOf(post.getCreatedTime()));
+		holder.mDate.setText(format.format(new Date(post.getCreatedTime())));
 
 		return convertView;
 	}

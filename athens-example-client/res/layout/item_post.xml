@@ -30,7 +30,6 @@
         android:layout_toRightOf="@+id/profile"
         android:layout_below="@+id/nickname"
         android:gravity="center_vertical"
-        android:maxLines="1"
         android:textColor="#000000"
         android:textSize="25sp" 
         android:text="content content content content content" />

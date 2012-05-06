@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/write_title"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <EditText
+            android:id="@+id/write_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="top|left"
+            android:hint="당신의 생각을 입력해 주세요." />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_write_submit"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/post_write_btn" />
+
+        <Button
+            android:id="@+id/btn_write_cancel"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/post_cancel_btn" />
+    </LinearLayout>
+
+</LinearLayout>

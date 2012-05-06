@@ -26,5 +26,7 @@ public interface OlympusConst {
 	public static final String PATH_GET_ACCEESS_TOKEN = "/getAccessToken";
 	public static final String PATH_WRITE = "/write";
 	public static final String PATH_TIMELINE = "/timeline";
+
+	public static final String HEADER_ACCESS_TOKEN = "O-Access-Token";
 	
 }

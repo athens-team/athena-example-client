@@ -44,9 +44,10 @@ import android.widget.Toast;
 /**
  * @author roth2520@gmail.com
  */
-public class OlympusJoinActivity extends Activity implements View.OnClickListener {
+public class OlympusJoinActivity extends Activity implements
+		View.OnClickListener {
 
-	private OlympusPreference mPref = null;
+	private OlympusPreference mPref;
 	private EditText mEditJoinEmail;
 	private EditText mEditJoinNickname;
 	private Button mBtnSubmit;
@@ -69,20 +70,19 @@ public class OlympusJoinActivity extends Activity implements View.OnClickListene
 	private void checkAndMove() {
 		/* if already signin */
 		if (!StringUtils.isEmptyOrNull(mPref.getAccessToken())) {
-			Intent intent = new Intent(this, AthensNewspeed.class);
+			Intent intent = new Intent(this, OlympusFeedActivity.class);
 			startActivity(intent);
 			finish();
 		}
 	}
 
 	public void onClick(View v) {
-		
+
 		final String email = mEditJoinEmail.getText().toString();
 		final String nickname = mEditJoinNickname.getText().toString();
 		final String tag = android.os.Build.MODEL;
 
 		final HttpClient httpClient = new DefaultHttpClient();
-
 		new DefaultAsyncTask<JSONObject>(ProgressDialogs.createDialog(this)) {
 
 			@Override
@@ -97,7 +97,8 @@ public class OlympusJoinActivity extends Activity implements View.OnClickListene
 						.add(new BasicNameValuePair("nickname", nickname));
 				nameValuePairs.add(new BasicNameValuePair("tag", tag));
 				try {
-					httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+					httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs,
+							"UTF-8"));
 					JSONObject result = httpClient.execute(httpPost,
 							new JSONResponseHandler());
 					return result;

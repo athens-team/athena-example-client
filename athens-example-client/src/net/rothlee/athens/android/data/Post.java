@@ -15,6 +15,10 @@
  */
 package net.rothlee.athens.android.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,9 +44,19 @@ public class Post{
 	{
 		Post result = new Post();
 		result.setId(jo.getInt("id"));
-		result.setId(jo.getInt("userId"));
+		result.setUserId(jo.getInt("user_id"));
+		result.setUser(User.createFromJson(jo.getJSONObject("user")));
 		result.setContent(jo.getString("content"));
 		result.setCreatedTime(jo.getLong("created_time"));
+		return result;
+	}
+	
+	public static List<Post> createList(JSONArray postList) throws JSONException {
+		List<Post> result = new ArrayList<Post>();
+		for(int i=0; i<postList.length(); i++) {
+			JSONObject jsonObj = (JSONObject) postList.get(i);
+			result.add(Post.createFromJson(jsonObj));
+		}
 		return result;
 	}
 	
@@ -98,5 +112,6 @@ public class Post{
 	public void setCreatedTime(Long createdTime) {
 		this.createdTime = createdTime;
 	}
+
 
 }

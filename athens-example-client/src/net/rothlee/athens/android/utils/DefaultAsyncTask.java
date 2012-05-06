@@ -1,4 +1,4 @@
-package net.rothlee.athens.android;
+package net.rothlee.athens.android.utils;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;

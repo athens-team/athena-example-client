@@ -44,7 +44,7 @@ public class AthensNewspeed extends Activity{
 		setContentView(R.layout.newspeed);
         
 		list_post = new ArrayList<Post>();
-		adapter_post = new MyListAdapter(this, R.layout.list_write,list_post);
+		adapter_post = new MyListAdapter(this, R.layout.item_post, list_post);
 		
         // lv_SA.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         String url = DownloadHtml("http://10.0.2.2/finalNFB/m_post_list.php?userID=" + userID);	

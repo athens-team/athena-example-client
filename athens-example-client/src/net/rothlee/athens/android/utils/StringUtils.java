@@ -1,4 +1,4 @@
-package net.rothlee.athens.android;
+package net.rothlee.athens.android.utils;
 
 public class StringUtils {
 

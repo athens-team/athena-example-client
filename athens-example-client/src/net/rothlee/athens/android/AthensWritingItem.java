@@ -2,16 +2,14 @@ package net.rothlee.athens.android;
 
 public class AthensWritingItem {
 
-	String imageID;
 	String name;
 	String content;
 	String date;
 	String ID;
 	int number;
 	
-	AthensWritingItem(String imageID, String name, String content, String date, String ID, int no) {
+	AthensWritingItem(String name, String content, String date, String ID, int no) {
 //		WritingItem(String name, String content, String date) {
-		this.imageID = imageID;
 		this.name = name;
 		this.content = content;
 		this.date = date;
@@ -19,9 +17,8 @@ public class AthensWritingItem {
 		this.number = no;
 	}
 	
-	AthensWritingItem(String imageID, String name, String content, String date, int no) {
+	AthensWritingItem(String name, String content, String date, int no) {
 //		WritingItem(String name, String content, String date) {
-		this.imageID = imageID;
 		this.name = name;
 		this.content = content;
 		this.date = date;
@@ -29,9 +26,8 @@ public class AthensWritingItem {
 		this.number = no;
 	}
 
-	AthensWritingItem(String imageID, String name, String content, int no) {
+	AthensWritingItem(String name, String content, int no) {
 //		WritingItem(String name, String content, String date) {
-		this.imageID = imageID;
 		this.name = name;
 		this.content = content;
 		this.date = null;
@@ -39,9 +35,8 @@ public class AthensWritingItem {
 		this.number = no;
 	}
 	
-	AthensWritingItem(String imageID, String name, String content) {
+	AthensWritingItem(String name, String content) {
 //		WritingItem(String name, String content, String date) {
-		this.imageID = imageID;
 		this.name = name;
 		this.content = content;
 		this.date = null;

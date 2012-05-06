@@ -12,22 +12,18 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Base64;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 public class AthensNewspeed extends Activity{
 	
@@ -129,11 +125,6 @@ public class AthensNewspeed extends Activity{
 			
 			RelativeLayout rel_back = (RelativeLayout)convertView.findViewById(R.id.rel_back);
 			rel_back.setBackgroundColor(Color.WHITE);
-			
-			ImageView img = (ImageView)convertView.findViewById(R.id.write_image);
-			byte[] decodedString = Base64.decode(itemArray.get(position).imageID, Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            img.setImageBitmap(decodedByte);
             
 			TextView txt1 =(TextView)convertView.findViewById(R.id.text1);
 			txt1.setText(itemArray.get(position).name);

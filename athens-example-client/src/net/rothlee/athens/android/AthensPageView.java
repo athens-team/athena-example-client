@@ -17,7 +17,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +125,7 @@ public class AthensPageView extends Activity implements View.OnClickListener{
         		int j = 0;
         		while(printable > 0){    			
         			AthensWritingItem wi;
-        			wi = new AthensWritingItem(order.getString("semiimage"+j), order.getString("seminame"+j), order.getString("semicontent"+j), "", order.getString("semiID"+j), order.getInt("seminumber"+j));
+        			wi = new AthensWritingItem( order.getString("seminame"+j), order.getString("semicontent"+j), "", order.getString("semiID"+j), order.getInt("seminumber"+j));
         			
         			list_PV.add(wi);
         			lv_PV = (ListView)findViewById(R.id.post_list);
@@ -192,12 +191,6 @@ public class AthensPageView extends Activity implements View.OnClickListener{
 			}
 			RelativeLayout rel_back = (RelativeLayout)convertView.findViewById(R.id.rel_back);
 			rel_back.setBackgroundColor(Color.rgb(245, 211, 214));
-			
-			ImageView img = (ImageView)convertView.findViewById(R.id.write_image);
-			byte[] decodedString = Base64.decode(itemArray.get(position).imageID, Base64.DEFAULT);
-            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            img.setImageBitmap(decodedByte);
-			//img.setPadding(30, 0, 0, 0);
 			
 			TextView txt1 =(TextView)convertView.findViewById(R.id.text1);
 			txt1.setText(itemArray.get(position).name);

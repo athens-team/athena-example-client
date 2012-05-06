@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, MainActivity!</string>
     <string name="app_name">AthensClient</string>
-
+    
+    <string name="str_common_empty"></string>
+    <string name="str_join_title">회원가입</string>
+    <string name="str_join_enter_email">이메일을 입력해주세요</string>
+    <string name="str_join_enter_email_hint">example@gmail.com</string>
+    <string name="str_join_enter_nickname">이름을 입력해주세요</string>
+    <string name="str_join_enter_nickname_hint">이곳에 이름을 입력하세요</string>
+    <string name="str_join_btn_submit">가입신청</string>
 </resources>

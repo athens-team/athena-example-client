@@ -23,16 +23,6 @@ import org.json.JSONObject;
  */
 public class Post{
 
-	public static Post createFromJson(JSONObject jo) throws JSONException
-	{
-		Post result = new Post();
-		result.setId(jo.getInt("id"));
-		result.setId(jo.getInt("userId"));
-		result.setContent(jo.getString("content"));
-		result.setCreatedTime(jo.getLong("created_time"));
-		return result;
-	}
-	
 	public static Post create(Integer postId) {
 		Post result = new Post();
 		result.setId(postId);
@@ -43,6 +33,16 @@ public class Post{
 		Post result = new Post();
 		result.setUserId(userId);
 		result.setContent(content);
+		return result;
+	}
+	
+	public static Post createFromJson(JSONObject jo) throws JSONException
+	{
+		Post result = new Post();
+		result.setId(jo.getInt("id"));
+		result.setId(jo.getInt("userId"));
+		result.setContent(jo.getString("content"));
+		result.setCreatedTime(jo.getLong("created_time"));
 		return result;
 	}
 	
@@ -98,15 +98,5 @@ public class Post{
 	public void setCreatedTime(Long createdTime) {
 		this.createdTime = createdTime;
 	}
-	
-//	public JSONObject toJSON() throws JSONException {
-//		JSONObject result = new JSONObject();
-//		result.put("id", getId());
-//		result.put("user_id", getUserId());
-//		result.put("user", getUser().toJSON());
-//		result.put("content", getContent());
-//		result.put("created_time", getCreatedTime());
-//		return result;
-//	}
 
 }

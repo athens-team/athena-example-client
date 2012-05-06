@@ -13,18 +13,20 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android;
+package net.rothlee.athens.android.utils;
+
+import android.app.ProgressDialog;
+import android.content.Context;
 
 /**
  * @author roth2520@gmail.com
  */
-public interface OlympusConst {
+public class ProgressDialogs {
 
-//	public static final String SERVER_HOST = "http://rothlee.net:8080";
-	public static final String SERVER_HOST = "http://172.30.1.1:8080";
-	
-	public static final String PATH_GET_ACCEESS_TOKEN = "/getAccessToken";
-	public static final String PATH_WRITE = "/write";
-	public static final String PATH_TIMELINE = "/timeline";
-	
+	public static ProgressDialog createDialog(Context context) {
+		ProgressDialog result = new ProgressDialog(context);
+		result.setMessage("Please Wait...");
+		result.show();
+		return result;
+	}
 }

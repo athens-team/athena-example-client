@@ -13,18 +13,24 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android;
+package net.rothlee.athens.android.utils;
 
 /**
  * @author roth2520@gmail.com
  */
-public interface OlympusConst {
+public class StringUtils {
 
-//	public static final String SERVER_HOST = "http://rothlee.net:8080";
-	public static final String SERVER_HOST = "http://172.30.1.1:8080";
-	
-	public static final String PATH_GET_ACCEESS_TOKEN = "/getAccessToken";
-	public static final String PATH_WRITE = "/write";
-	public static final String PATH_TIMELINE = "/timeline";
-	
+	public static final String EMPTY_STRING = "";
+
+	private StringUtils() {
+	}
+
+	public static boolean isEmptyOrNull(String str) {
+		return str == null || !(str.length() > 0);
+	}
+
+	public static String nvl(String str) {
+		if (isEmptyOrNull(str)) { return EMPTY_STRING; }
+		return str;
+	}
 }

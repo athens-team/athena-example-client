@@ -43,7 +43,7 @@ public class joinActivity extends Activity implements View.OnClickListener {
 		
 		if(pref.getString("email", "") != ""){
 			//이미 등록되었으므로 바로 게시판으로 넘어간다.
-			Intent i = new Intent(this, Athens_banner.class);
+			Intent i = new Intent(this, AthensBanner.class);
 			startActivity(i);
      		finish();
 		}

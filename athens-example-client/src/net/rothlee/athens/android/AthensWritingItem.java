@@ -48,6 +48,4 @@ public class AthensWritingItem {
 		this.ID = null;
 		this.number = 0;
 	}
-
-
 }

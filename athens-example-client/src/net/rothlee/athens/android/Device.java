@@ -13,17 +13,14 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.olympus.data;
-
-import net.rothlee.athens.olympus.data.DataUtils.JConvertable;
-
+package net.rothlee.athens.android;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * @author roth2520@gmail.com
  */
-public class Device implements JConvertable {
+public class Device {
 
 	private Integer id;
 	

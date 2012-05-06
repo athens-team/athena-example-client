@@ -1,5 +1,6 @@
+
 /*
- * Copyright 2012 Athens Team
+* Copyright 2012 Athens Team
  *
  * This file to you under the Apache License, version 2.0
  * (the "License"); you may not use this file except in compliance with the
@@ -13,17 +14,14 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.olympus.data;
-
-import net.rothlee.athens.olympus.data.DataUtils.JConvertable;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author roth2520@gmail.com
  */
-public class User implements JConvertable {
+
+package net.rothlee.athens.android;
+
+public class User {
 
 	public static User createById(Integer id) {
 		User result = new User();
@@ -105,14 +103,14 @@ public class User implements JConvertable {
 		this.createdTime = createdTime;
 	}
 	
-	public JSONObject toJSON() throws JSONException {
-		JSONObject result = new JSONObject();
-		result.put("id", getId());
-		result.put("device_id", getDeviceId());
-		result.put("profile", getProfile());
-		result.put("email_addr", getEmailAddr());
-		result.put("nickname", getNickname());
-		result.put("created_time", getCreatedTime());
-		return result;
-	}
+//	public JSONObject toJSON() throws JSONException {
+//		JSONObject result = new JSONObject();
+//		result.put("id", getId());
+//		result.put("device_id", getDeviceId());
+//		result.put("profile", getProfile());
+//		result.put("email_addr", getEmailAddr());
+//		result.put("nickname", getNickname());
+//		result.put("created_time", getCreatedTime());
+//		return result;
+//	}
 }

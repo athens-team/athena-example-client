@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android.net;
+package net.rothlee.athens.android.utils;
 
 import java.io.IOException;
 
@@ -22,8 +22,6 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
-
-import android.util.Log;
 
 /**
  * @author roth2520@gmail.com

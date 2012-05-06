@@ -23,17 +23,6 @@ import org.json.JSONObject;
  */
 public class User {
 
-	public static User createFromJson(JSONObject jo) throws JSONException
-	{
-		User result = new User();
-		result.setId(jo.getInt("id"));
-		result.setProfile(jo.getString("profile"));
-		result.setEmailAddr(jo.getString("emailaddr"));
-		result.setNickname(jo.getString("nickname"));
-		result.setCreatedTime(jo.getLong("created_time"));
-		return result;
-	}
-	
 	public static User createById(Integer id) {
 		User result = new User();
 		result.setId(id);
@@ -50,6 +39,17 @@ public class User {
 		User result = new User();
 		result.setEmailAddr(email);
 		result.setNickname(nickname);
+		return result;
+	}
+	
+	public static User createFromJson(JSONObject jo) throws JSONException
+	{
+		User result = new User();
+		result.setId(jo.getInt("id"));
+		result.setProfile(jo.getString("profile"));
+		result.setEmailAddr(jo.getString("emailaddr"));
+		result.setNickname(jo.getString("nickname"));
+		result.setCreatedTime(jo.getLong("created_time"));
 		return result;
 	}
 	
@@ -103,14 +103,4 @@ public class User {
 		this.createdTime = createdTime;
 	}
 	
-//	public JSONObject toJSON() throws JSONException {
-//		JSONObject result = new JSONObject();
-//		result.put("id", getId());
-//		result.put("device_id", getDeviceId());
-//		result.put("profile", getProfile());
-//		result.put("email_addr", getEmailAddr());
-//		result.put("nickname", getNickname());
-//		result.put("created_time", getCreatedTime());
-//		return result;
-//	}
 }

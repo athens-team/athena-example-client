@@ -8,6 +8,7 @@
         android:layout_height="50dip"
         android:layout_width="50dip"
         android:layout_margin="5dip"
+        android:contentDescription="@string/str_common_empty"
         android:visibility="gone" />
     
     <TextView

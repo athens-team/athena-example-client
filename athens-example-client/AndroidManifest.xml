@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.rothlee.athens.android"
+    package="com.eincs.athens.android"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Light.NoTitleBar" >
         <activity
-            android:name=".OlympusJoinActivity"
+            android:name="com.eincs.athens.android.OlympusJoinActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".OlympusFeedActivity"
+            android:name="com.eincs.athens.android.OlympusFeedActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".OlympusWriteActivity" >

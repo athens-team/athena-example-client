@@ -13,20 +13,46 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android.utils;
+package com.eincs.athens.android.utils;
 
 import android.app.ProgressDialog;
-import android.content.Context;
+import android.os.AsyncTask;
 
 /**
  * @author roth2520@gmail.com
+ * @param <Result>
  */
-public class ProgressDialogs {
+public abstract class DefaultAsyncTask<Result> extends
+		AsyncTask<Object, Object, Result> {
 
-	public static ProgressDialog createDialog(Context context) {
-		ProgressDialog result = new ProgressDialog(context);
-		result.setMessage("Please Wait...");
-		result.show();
-		return result;
+	private final ProgressDialog dialog;
+
+	public DefaultAsyncTask() {
+		this.dialog = null;
 	}
+	
+	public DefaultAsyncTask(ProgressDialog dialog) {
+		this.dialog = dialog;
+	}
+
+	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
+		try {
+			dialog.show();
+		} catch (Exception e) {
+		}
+	}
+
+	@Override
+	protected abstract Result doInBackground(Object... params);
+
+	protected void onPostExecute(Result result) {
+		try {
+			dialog.dismiss();
+		} catch (Exception e) {
+		}
+
+	};
+
 }

@@ -13,24 +13,22 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android.utils;
+package com.eincs.athens.android;
+
+import com.eincs.athens.android.R;
 
 /**
  * @author roth2520@gmail.com
  */
-public class StringUtils {
+public interface OlympusConst {
 
-	public static final String EMPTY_STRING = "";
+//	public static final String SERVER_HOST = "http://rothlee.net:8080";
+	public static final String SERVER_HOST = "https://rothlee.net/athens";
+	
+	public static final String PATH_GET_ACCEESS_TOKEN = "/getAccessToken";
+	public static final String PATH_WRITE = "/write";
+	public static final String PATH_TIMELINE = "/timeline";
 
-	private StringUtils() {
-	}
-
-	public static boolean isEmptyOrNull(String str) {
-		return str == null || !(str.length() > 0);
-	}
-
-	public static String nvl(String str) {
-		if (isEmptyOrNull(str)) { return EMPTY_STRING; }
-		return str;
-	}
+	public static final String HEADER_ACCESS_TOKEN = "O-Access-Token";
+	
 }

@@ -13,18 +13,13 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package net.rothlee.athens.android;
+package com.eincs.athens.android;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.TreeMap;
 
-import net.rothlee.athens.android.data.Post;
-import net.rothlee.athens.android.utils.DefaultAsyncTask;
-import net.rothlee.athens.android.utils.JSONResponseHandler;
-import net.rothlee.athens.android.utils.ProgressDialogs;
-import net.rothlee.athens.android.utils.StringUtils;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -42,6 +37,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.eincs.athens.android.R;
+import com.eincs.athens.android.data.Post;
+import com.eincs.athens.android.utils.DefaultAsyncTask;
+import com.eincs.athens.android.utils.JSONResponseHandler;
+import com.eincs.athens.android.utils.ProgressDialogs;
+import com.eincs.athens.android.utils.StringUtils;
 
 public class OlympusFeedActivity extends ListActivity implements
 		View.OnClickListener {

@@ -13,12 +13,13 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android;
+package com.eincs.athens.android;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import com.eincs.athens.android.R;
 
 /**
  * @author roth2520@gmail.com

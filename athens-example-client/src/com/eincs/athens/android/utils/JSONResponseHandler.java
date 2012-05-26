@@ -13,46 +13,31 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android.utils;
+package com.eincs.athens.android.utils;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
+import java.io.IOException;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 /**
  * @author roth2520@gmail.com
- * @param <Result>
  */
-public abstract class DefaultAsyncTask<Result> extends
-		AsyncTask<Object, Object, Result> {
-
-	private final ProgressDialog dialog;
-
-	public DefaultAsyncTask() {
-		this.dialog = null;
-	}
-	
-	public DefaultAsyncTask(ProgressDialog dialog) {
-		this.dialog = dialog;
-	}
+public class JSONResponseHandler implements ResponseHandler<JSONObject> {
 
 	@Override
-	protected void onPreExecute() {
-		super.onPreExecute();
+	public JSONObject handleResponse(HttpResponse response)
+			throws ClientProtocolException, IOException {
+		StringBuffer sb = new StringBuffer();
+		sb.append(EntityUtils.toString(response.getEntity()));
 		try {
-			dialog.show();
+			return new JSONObject(sb.toString());
 		} catch (Exception e) {
+			return null;
 		}
 	}
-
-	@Override
-	protected abstract Result doInBackground(Object... params);
-
-	protected void onPostExecute(Result result) {
-		try {
-			dialog.dismiss();
-		} catch (Exception e) {
-		}
-
-	};
 
 }

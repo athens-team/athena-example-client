@@ -13,14 +13,13 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package net.rothlee.athens.android;
+package com.eincs.athens.android;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import net.rothlee.athens.android.data.Post;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +27,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.eincs.athens.android.R;
+import com.eincs.athens.android.data.Post;
 
 public class PostAdapter extends BaseAdapter{
 

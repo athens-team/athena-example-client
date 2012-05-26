@@ -13,13 +13,10 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package net.rothlee.athens.android;
+package com.eincs.athens.android;
 
 import java.util.ArrayList;
 
-import net.rothlee.athens.android.utils.DefaultAsyncTask;
-import net.rothlee.athens.android.utils.JSONResponseHandler;
-import net.rothlee.athens.android.utils.ProgressDialogs;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -39,6 +36,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.eincs.athens.android.R;
+import com.eincs.athens.android.utils.DefaultAsyncTask;
+import com.eincs.athens.android.utils.JSONResponseHandler;
+import com.eincs.athens.android.utils.ProgressDialogs;
 
 public class OlympusWriteActivity extends Activity implements
 		View.OnClickListener {
